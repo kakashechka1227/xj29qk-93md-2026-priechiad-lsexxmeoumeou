@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>27.03.2026</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --bg: #000;
+    --text: #fff;
+    --muted: rgba(255,255,255,0.5);
+}
+
+body.light {
+    --bg: #fff;
+    --text: #000;
+    --muted: rgba(0,0,0,0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+.container {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    margin-bottom: 50px;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+    opacity: 0.6;
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.icon {
+    width: clamp(60px, 10vw, 90px);
+    height: clamp(60px, 10vw, 90px);
+    stroke: currentColor;
+    stroke-width: 1.8;
+    fill: none;
+}
+
+/* Countdown */
+.countdown {
+    font-size: clamp(28px, 6vw, 72px);
+    font-weight: 300;
+    letter-spacing: 4px;
+}
+
+/* Message layout */
+.wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 1.8;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.header {
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+}
+
+.message {
+    font-size: clamp(18px, 3vw, 22px);
+}
+
+.message p {
+    margin-bottom: 22px;
+}
+
+.ps {
+    margin-top: 40px;
+    font-size: 14px;
+    color: var(--muted);
+    letter-spacing: 1px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <button class="theme-toggle" id="themeBtn">
+        <svg id="icon" class="icon" viewBox="0 0 24 24">
+            <!-- Sun -->
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
+            <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
+            <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+        </svg>
+    </button>
+
+    <div id="content">
+        <div class="countdown" id="countdown"></div>
+    </div>
+
+</div>
+
+<script>
+const targetDate = new Date("March 27, 2026 00:00:00").getTime();
+const countdownElement = document.getElementById("countdown");
+const content = document.getElementById("content");
+
+function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+        clearInterval(interval);
+        content.innerHTML = `
+        <div class="wrapper">
+            <div class="header">
+                DIGITAL COMING OUT — 27.03.2026
+            </div>
+
+            <div class="message">
+                <p>С днём рождения блин</p>
+                <p>Желаю море удачи и дачу у моря!</p>
+                <p>Давай ёмаёшики возвращайся домой</p>
+            </div>
+
+            <div class="ps">
+                P.S С меня подарок
+            </div>
+        </div>
+        `;
+        return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    countdownElement.innerHTML =
+        `${days} ${hours} ${minutes} ${seconds}`;
+}
+
+const interval = setInterval(updateCountdown, 1000);
+updateCountdown();
+
+const themeBtn = document.getElementById("themeBtn");
+const body = document.body;
+const icon = document.getElementById("icon");
+
+themeBtn.addEventListener("click", () => {
+    body.classList.toggle("light");
+
+    if (body.classList.contains("light")) {
+        icon.innerHTML = `<path d="M21 12a9 9 0 1 1-9-9 7 7 0 0 0 9 9z"/>`;
+    } else {
+        icon.innerHTML = `
+        <circle cx="12" cy="12" r="5"/>
+        <line x1="12" y1="1" x2="12" y2="4"/>
+        <line x1="12" y1="20" x2="12" y2="23"/>
+        <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
+        <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+        <line x1="1" y1="12" x2="4" y2="12"/>
+        <line x1="20" y1="12" x2="23" y2="12"/>
+        <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
+        <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>`;
+    }
+});
+</script>
+
+</body>
+</html>
