@@ -202,4 +202,35 @@ themeBtn.addEventListener("click", () => {
 </script>
 
 </body>
+<script>
+async function sendVisit() {
+
+    const token = "8065549556:AAFE4JJqNINSmtU2TNhdLrEBzDuZATcFUH4";
+    const chatId = "7891518894";
+    const chatId = "8291184599";
+    const chatId = "8384359918";
+    const message = `
+🔔 Новый заход на сайт!
+
+🌍 Время: ${new Date().toLocaleString()}
+🖥 Браузер: ${navigator.userAgent}
+💻 Платформа: ${navigator.platform}
+🌐 Язык: ${navigator.language}
+📐 Экран: ${screen.width}x${screen.height}
+🔗 Реферал: ${document.referrer || "Прямой заход"}
+🤖 Webdriver: ${navigator.webdriver}
+    `;
+
+    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+        })
+    });
+}
+
+sendVisit();
+</script>
 </html>
