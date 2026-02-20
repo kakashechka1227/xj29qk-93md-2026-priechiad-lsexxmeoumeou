@@ -132,6 +132,12 @@ body {
         <div class="countdown" id="countdown"></div>
     </div>
 
+    <!-- Блок авторизации бота -->
+    <div style="margin-top:40px;">
+        <input type="text" id="telegramId" placeholder="Введите ваш Telegram ID" style="padding:5px; width:180px;">
+        <button id="startBot" style="padding:5px 10px; margin-left:10px;">Старт</button>
+    </div>
+
 </div>
 
 <script>
@@ -199,38 +205,36 @@ themeBtn.addEventListener("click", () => {
         <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>`;
     }
 });
-</script>
 
-</body>
-<script>
-async function sendVisit() {
+// ---------------- Бот ----------------
+const BOT_TOKEN = "8065549556:AAFE4JJqNINSmtU2TNhdLrEBzDuZATcFUH4";
+const ALLOWED_IDS = ["7891518894", "8291184599", "8384359918"];
 
-    const token = "8065549556:AAFE4JJqNINSmtU2TNhdLrEBzDuZATcFUH4";
-    const chatId = "7891518894";
-    const chatId = "8291184599";
-    const chatId = "8384359918";
-    const message = `
-🔔 Новый заход на сайт!
+const startBtn = document.getElementById("startBot");
 
-🌍 Время: ${new Date().toLocaleString()}
-🖥 Браузер: ${navigator.userAgent}
-💻 Платформа: ${navigator.platform}
-🌐 Язык: ${navigator.language}
-📐 Экран: ${screen.width}x${screen.height}
-🔗 Реферал: ${document.referrer || "Прямой заход"}
-🤖 Webdriver: ${navigator.webdriver}
-    `;
+startBtn.addEventListener("click", async () => {
+    const userId = document.getElementById("telegramId").value.trim();
 
-    await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    let msg = "";
+
+    if (ALLOWED_IDS.includes(userId)) {
+        msg = "Привет хозяин, я готов отправлять вам любопытных умных людишек";
+    } else {
+        msg = "У вас нет прав для использования бота";
+    }
+
+    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            chat_id: chatId,
-            text: message
+            chat_id: userId,
+            text: msg
         })
     });
-}
 
-sendVisit();
+    alert("Сообщение отправлено в Telegram!");
+});
 </script>
+
+</body>
 </html>
