@@ -52,13 +52,8 @@ body {
     transition: opacity 0.3s ease, transform 0.2s ease;
 }
 
-.theme-toggle:hover {
-    opacity: 0.6;
-}
-
-.theme-toggle:active {
-    transform: scale(0.95);
-}
+.theme-toggle:hover { opacity: 0.6; }
+.theme-toggle:active { transform: scale(0.95); }
 
 .icon {
     width: clamp(60px, 10vw, 90px);
@@ -68,14 +63,12 @@ body {
     fill: none;
 }
 
-/* Countdown */
 .countdown {
     font-size: clamp(28px, 6vw, 72px);
     font-weight: 300;
     letter-spacing: 4px;
 }
 
-/* Message layout */
 .wrapper {
     max-width: 600px;
     margin: 0 auto;
@@ -96,9 +89,7 @@ body {
     font-size: clamp(18px, 3vw, 22px);
 }
 
-.message p {
-    margin-bottom: 22px;
-}
+.message p { margin-bottom: 22px; }
 
 .ps {
     margin-top: 40px;
@@ -115,7 +106,6 @@ body {
 
     <button class="theme-toggle" id="themeBtn">
         <svg id="icon" class="icon" viewBox="0 0 24 24">
-            <!-- Sun -->
             <circle cx="12" cy="12" r="5"/>
             <line x1="12" y1="1" x2="12" y2="4"/>
             <line x1="12" y1="20" x2="12" y2="23"/>
@@ -130,12 +120,6 @@ body {
 
     <div id="content">
         <div class="countdown" id="countdown"></div>
-    </div>
-
-    <!-- Блок авторизации бота -->
-    <div style="margin-top:40px;">
-        <input type="text" id="telegramId" placeholder="Введите ваш Telegram ID" style="padding:5px; width:180px;">
-        <button id="startBot" style="padding:5px 10px; margin-left:10px;">Старт</button>
     </div>
 
 </div>
@@ -206,34 +190,22 @@ themeBtn.addEventListener("click", () => {
     }
 });
 
-// ---------------- Бот ----------------
-const BOT_TOKEN = "8065549556:AAFE4JJqNINSmtU2TNhdLrEBzDuZATcFUH4";
-const ALLOWED_IDS = ["7891518894", "8291184599", "8384359918"];
-
-const startBtn = document.getElementById("startBot");
-
-startBtn.addEventListener("click", async () => {
-    const userId = document.getElementById("telegramId").value.trim();
-
-    let msg = "";
-
-    if (ALLOWED_IDS.includes(userId)) {
-        msg = "Привет хозяин, я готов отправлять вам любопытных умных людишек";
-    } else {
-        msg = "У вас нет прав для использования бота";
-    }
-
-    await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+// ===== Отправка захода на сервер =====
+async function sendVisit() {
+    await fetch("https://5w4g647ja2h9s324aerj8vtc-rv52bbbbot.onrender.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            chat_id: userId,
-            text: msg
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language,
+            screen: screen.width + "x" + screen.height,
+            referrer: document.referrer || "Прямой заход"
         })
     });
+}
 
-    alert("Сообщение отправлено в Telegram!");
-});
+sendVisit();
 </script>
 
 </body>
