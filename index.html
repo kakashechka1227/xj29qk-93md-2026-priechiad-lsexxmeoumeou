@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="ru">
+<!DOCTYPE html><html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>27.03.2026</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
-
-<style>
+<title>27.03.2026</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet"><style>
 :root {
     --bg: #000;
     --text: #fff;
@@ -108,13 +103,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-.header {
-    font-size: 12px;
-    color: var(--muted);
-    margin-bottom: 40px;
-    letter-spacing: 2px;
-}
-
 .message {
     font-size: clamp(18px, 3vw, 22px);
 }
@@ -122,26 +110,10 @@ body {
 .message p {
     margin-bottom: 22px;
 }
-
-.ps {
-    margin-top: 40px;
-    font-size: 14px;
-    color: var(--muted);
-    letter-spacing: 1px;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<div class="hint" id="hint">
+</style></head><body><div class="container"><div class="hint" id="hint">
     <div>нажми</div>
     <div class="hint-line"></div>
-</div>
-
-<button class="theme-toggle" id="themeBtn">
+</div><button class="theme-toggle" id="themeBtn">
 <svg id="icon" class="icon" viewBox="0 0 24 24">
 <circle cx="12" cy="12" r="5"/>
 <line x1="12" y1="1" x2="12" y2="4"/>
@@ -153,20 +125,12 @@ body {
 <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
 <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
 </svg>
-</button>
-
-<div id="content">
+</button><div id="content">
     <div class="countdown" id="countdown"></div>
-</div>
-
-<audio id="finalAudio" preload="auto">
+</div><audio id="finalAudio" preload="auto">
 <source src="audio.mp3" type="audio/mpeg">
-</audio>
-
-</div>
-
-<script>
-const targetDate = new Date("March 27, 2026 00:00:00").getTime();
+</audio></div><script>
+const targetDate = new Date("March 23, 2026 20:13:00").getTime();
 const countdownElement = document.getElementById("countdown");
 const content = document.getElementById("content");
 const audio = document.getElementById("finalAudio");
@@ -202,9 +166,6 @@ themeBtn.addEventListener("click", () => {
     setTimeout(() => hint.style.display = "none", 400);
 });
 
-
-/* дана я тебя люблю, сука. извини за эту хуйню, но ты сама виновата если читаешь это. исмаил я такой мудак, извиняюсь. в общем желаю тебе счастья здоровья дана (а тут уже не искренне) и вашим отношениям. загадываю желание чтоб вы жили долго и счастливо раздельно друг от друга. дана искренне желаю чтобы ты обрела настоящее счастье */
-
 function updateCountdown() {
 
     const now = new Date().getTime();
@@ -216,44 +177,46 @@ function updateCountdown() {
 
         content.innerHTML = `
         <div class="wrapper">
-            <div class="header">
-                DIGITAL COMING OUT — 27.03.2026
-            </div>
             <div class="message">
-                <p>▆ ▆▆▆▆ ▆▆▆▆▆▆ ▆▆▆▆</p>
-                <p>▆▆▆▆▆ ▆▆▆▆ ▆▆▆▆▆ ▆ ▆▆▆ ▆ ▆▆▆ ▆</p>
-                <p>▆▆▆▆▆ ▆▆▆▆▆▆▆▆ ▆▆▆▆▆▆▆▆▆▆▆ ▆▆▆▆▆</p>
-            </div>
-            <div class="ps">
-                P.S Я передумал, просто с днем рождения бывшая. В файлах все это время можно было посмотреть что был за текст до того, как я его убрал.
-            </div>
-        </div>
-        `;
-        return;
-    }
-
-    const totalSecondsLeft = Math.floor(distance / 1000);
-
-    if (totalSecondsLeft <= 30 && totalSecondsLeft > 0) {
-        const startFrom = 30 - totalSecondsLeft;
-
-        if (audioEnabled && audio.paused) {
-            audio.currentTime = startFrom;
-            audio.play().catch(()=>{});
-        }
-    }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((distance / (1000 * 60)) % 60);
-    const seconds = Math.floor((distance / 1000) % 60);
-
-    countdownElement.innerHTML = `${days} ${hours} ${minutes} ${seconds}`;
+                <p>С днём рождения бывшая. Я удалил прошлый вариант. Жди подарок.</p>
+                <pre style="font-family: monospace; font-size: 12px; line-height: 1.2; margin-top: 30px;">
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣠⣤⣤⣀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣧⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀
+⠀⠀⠀⠀⠀⠀⠀⢀⣴⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀
+⠀⠀⠀⠀⢀⣀⢾⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠛⢋⣭⡍⣿⣿⣿⣿⣿⣿⠀
+⠀⢀⣴⣶⣶⣝⢷⡝⢿⣿⣿⣿⠿⠛⠉⠀⠀⣰⣿⣿⢣⣿⣿⣿⣿⣿⣿⡇
+⢀⣾⣿⣿⣿⣿⣧⠻⡌⠿⠋⠁⠀⠀⠀⠀⢰⣿⣿⡏⣸⣿⣿⣿⣿⣿⣿⣿
+⣼⣿⣿⣿⣿⣿⣿⡇⠁⠀⠀⠀⠀⠀⠀⠀⠈⠻⢿⠇⢻⣿⣿⣿⣿⣿⣿⡟
+⠙⢹⣿⣿⣿⠿⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⢿⣿⣿⡿⠟⠁
+⠀⠀⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                </pre></div>
+    </div>
+    `;
+    return;
 }
 
-const interval = setInterval(updateCountdown, 1000);
-updateCountdown();
-</script>
+const totalSecondsLeft = Math.floor(distance / 1000);
+
+if (totalSecondsLeft <= 30 && totalSecondsLeft > 0) {
+    const startFrom = 30 - totalSecondsLeft;
+
+    if (audioEnabled && audio.paused) {
+        audio.currentTime = startFrom;
+        audio.play().catch(()=>{});
+    }
+}
+
+const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+const minutes = Math.floor((distance / (1000 * 60)) % 60);
+const seconds = Math.floor((distance / 1000) % 60);
+
+countdownElement.innerHTML = `${days} ${hours} ${minutes} ${seconds}`;
+
+}
+
+const interval = setInterval(updateCountdown, 1000); updateCountdown(); </script>
 
 </body>
 </html>
